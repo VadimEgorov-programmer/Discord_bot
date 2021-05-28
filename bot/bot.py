@@ -3,8 +3,9 @@ import discord
 from discord.ext import commands
 from decouple import config
 
+# Бот реагирует на &. К примеру &time
+bot = commands.Bot(command_prefix='&', intents=discord.Intents.all())
 
-bot = commands.Bot(command_prefix='&', intents=discord.Intents.all())  # Бот реагирует на &. К примеру &time
 
 @bot.event
 async def on_ready():
@@ -16,6 +17,5 @@ async def on_ready():
     if base:
         print('База данных заработала')
 
-bot.run(config('TOKEN'))
 
-#  bot.run('ODQ3ODIwMjk4MzA3ODk1MzI3.YLDoLg.7A6rnKa0gtFDf5NHyBeHpWHAtbM')
+bot.run(config('TOKEN'))
