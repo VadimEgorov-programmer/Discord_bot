@@ -1,4 +1,4 @@
-import os, sqlite3
+import sqlite3
 import discord
 from discord.ext import commands
 from decouple import config
@@ -18,5 +18,29 @@ async def on_ready():
         print('База данных заработала')
 
 
-bot.run(config('TOKEN'))
+@bot.command()
+async def test(ctx):
+    await ctx.send('Тест')
 
+
+@bot.command()
+async def инфо(ctx, arg=None):
+    author = ctx.message.author
+    arg = arg.lower()
+
+    if arg == None:
+        await ctx.send(
+            f'{author.mention}, Введите:\n&инфо общее\n&инфо команды')
+    elif arg == 'общее':
+        await ctx.send(
+            f'{author.mention}, Я бот, слежу за сообщениями в чате.'
+            f' \n2 мата - бан')
+    elif arg == 'команды':
+        await ctx.send(
+            f'{author.mention}, &test - Статус работы бота'
+            f'\n&предупреждения - предупреждения')
+    else:
+        await ctx.send(f'{author.mention} Введённая вами команда отсутствует')
+
+
+bot.run(config('TOKEN'))
