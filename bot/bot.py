@@ -60,7 +60,7 @@ async def инфо(ctx, arg=None):
 
 
 @bot.command
-async def статус(ctx):
+async def предупреждения(ctx):
     base.execute('CREATE TABLE IF NOT EXISTS {}(userid INT, count INT)'.format(
         ctx.message.guild.name))
     base.commit()
